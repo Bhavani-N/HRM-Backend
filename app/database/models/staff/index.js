@@ -14,7 +14,7 @@ const options = {
 // }, options);
 
 const staffSchema = new Schema({
-  firstName: { type: String },
+  firstName: { type: String, required: true },
   lastName: { type: String },
   phoneNumber: {
     countryCode: { type: Number },
@@ -27,17 +27,16 @@ const staffSchema = new Schema({
   email: {
     type: String,
     required: true,
-    lowercase: true,
+    unique: true,
     trim: true,
   },
   password: { type: String },
   isEmailVerified: { type: Boolean, default: false },
-  isActive: { type: Boolean, default: false },
+  isActive: { type: Boolean, default: true, select: false },
   isDelete: { type: Boolean, default: false },
   employeeId: { type: String },
-  role: { type: String, enum: ['admin', 'HR', 'Employee'] },
-  profileImage: { type: String },
-  // loginActivity: [loginActivitySchema],
+  role: { type: String, enum: ['admin', 'HR', 'Employee'], default: 'Employee' },
+  profileImage: { type: String, default: 'default.jpg' },
   access: {
     type: String,
     enum: ['Full-Access', 'Partial-Access'],

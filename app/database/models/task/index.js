@@ -1,16 +1,36 @@
 const mongoose = require('mongoose');
-const Schema = require('mongoose');
+const { Schema } = mongoose;
+const Project = require('../project')
 
 const taskSchema = new Schema({
-    name: {
+    taskName: {
         type: String,
-        required: [true],
+        required: true,
         unique: true,
         trim: true,
     },
+    taskCode: {
+        type: String,
+        required: true,
+        unique: true,
+        trim: true
+    },
     status: {
         type: String,
-        required: true
+        enum: ['pending', 'completed'],
+        default: 'pending'
+    },
+    project: [
+        {
+            type: mongoose.Schema.ObjectId,
+            ref: 'Project'
+        }
+    ],
+    duration: {
+        type: Number
+    },
+    BillableHrs: {
+        type: Number
     }
 },
 {

@@ -1,9 +1,10 @@
-const Staff = require('../../database/models/staff/index');
+const Task = require('../../database/models/task/index');
 const catchAsync = require('../../utils/catchAsync');
 const AppError = require('../../utils/appError');
 
-exports.getStaff = catchAsync(async(req, res, next) => {
-  let result = await Staff.findById(req.params.id); 
+exports.getTask = catchAsync(async(req, res, next) => {
+  let result = await Task.findById(req.params.id).populate({
+  });
 
   if(!result) {
     return next(new AppError('No document found with that ID', 404));
@@ -17,15 +18,15 @@ exports.getStaff = catchAsync(async(req, res, next) => {
   });
 });
 
-exports.getAllStaffs =  catchAsync(async (req, res, next) => {
-  const staffs = await Staff.find();
+exports.getAllTasks =  catchAsync(async (req, res, next) => {
+  const tasks = await Task.find();
 
   // SEND RESPONSE
   res.status(200).json({
       status: 'success',
-      results: staffs.length,
+      results: tasks.length,
       data: {
-          staffs
+        tasks
       }
   });
 });

@@ -14,9 +14,11 @@ router
 
 router
     .route('/:id')
-    .get(getStaff.getStaff);
+    .get(getStaff.getStaff)
+    .patch(updateStaff.updateStaff)
+    .delete(deleteStaff.deleteStaff)
 
-router.patch('/updateStaff', updateStaff.updateStaff);
-router.delete('/deleteStaff', deleteStaff.deleteStaff);
+// router.patch('/updateStaff', updateStaff.updateStaff);
+// router.delete('/deleteStaff', deleteStaff.deleteStaff);
 
 module.exports = router;

@@ -12,7 +12,6 @@ const config = require('./config/index');
 
 const AppError = require('./app/utils/appError');
 const globalErrorHandler = require('./app/controllers/errorController');
-const staffRoutes = require('./app/routes/staff/staff');
 
 // const { connectionDb } = require('./app/database/db');
 
@@ -41,7 +40,7 @@ app.use(helmet());
 app.use(bodyParser.urlencoded({ extended: true, limit: '7mb' }));
 app.use(bodyParser.json({ limit: '7mb', extended: true }));
 
-app.use('/api/v1/staffs', staffRoutes);
+require('./app/routes')(app);
 
 app.use(globalErrorHandler);
 

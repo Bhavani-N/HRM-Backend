@@ -1,9 +1,9 @@
-const Staff = require('../../database/models/staff/index');
+const Task = require('../../database/models/task/index');
 const catchAsync = require('../../utils/catchAsync');
 const AppError = require('../../utils/appError');
 
-exports.updateStaff = catchAsync(async (req, res, next) => {
-  const result = await Staff.findByIdAndUpdate(req.params.id, req.body, {
+exports.updateTask = catchAsync(async (req, res, next) => {
+  const result = await Task.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true
   });

@@ -1,10 +1,10 @@
-const Staff = require('../../database/models/staff/index');
+const Project = require('../../database/models/project');
 const catchAsync = require('../../utils/catchAsync');
 const AppError = require('../../utils/appError');
 
-exports.deleteStaff = catchAsync(async(req, res, next) => {
+exports.deleteProject = catchAsync(async(req, res, next) => {
 
-    const result = await Staff.findByIdAndDelete(req.params.id);
+    const result = await Project.findByIdAndDelete(req.params.id);
 
     if(!result) {
         return next(new AppError('No document found with that ID', 404));
@@ -14,3 +14,5 @@ exports.deleteStaff = catchAsync(async(req, res, next) => {
         data: null
     });
 });
+
+

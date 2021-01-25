@@ -1,9 +1,9 @@
-const Staff = require('../../database/models/staff/index');
+const Project= require('../../database/models/project');
 const catchAsync = require('../../utils/catchAsync');
 const AppError = require('../../utils/appError');
 
-exports.getStaff = catchAsync(async(req, res, next) => {
-  let result = await Staff.findById(req.params.id); 
+exports.getProject= catchAsync(async(req, res, next) => {
+  let result = await Project.findById(req.params.id); 
 
   if(!result) {
     return next(new AppError('No document found with that ID', 404));
@@ -17,15 +17,15 @@ exports.getStaff = catchAsync(async(req, res, next) => {
   });
 });
 
-exports.getAllStaffs =  catchAsync(async (req, res, next) => {
-  const staffs = await Staff.find();
+exports.getAllProjects =  catchAsync(async (req, res, next) => {
+  const projects = await Project.find();
 
   // SEND RESPONSE
   res.status(200).json({
       status: 'success',
-      results: staffs.length,
+      results: projects.length,
       data: {
-          staffs
+        projects
       }
   });
 });
